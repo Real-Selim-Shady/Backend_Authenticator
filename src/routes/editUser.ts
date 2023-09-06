@@ -2,18 +2,18 @@ import UserModel from "../models/User"
 import { ValidationError, UniqueConstraintError } from "sequelize"
 import authenticateToken from "../auth/auth"
 
-module.exports = (app: any) => {
+function editUserRoute(app: any) {
     app.put('/api/editUser/:id', authenticateToken, (req: any, res: any) => {
     const userIdFromToken = req.user.userId;
     const id = parseInt(req.params.id);
-    
+
 
     // Vérification de la corresponsance entre l'ID de l'utilisateur dans le token et l'ID dans la requête
     if (userIdFromToken !== id) {
-      const message = `Vous n'êtes pas autorisé à modifier ce compte.`;
-      return res.status(403).json({ message });
+        const message = `Vous n'êtes pas autorisé à modifier ce compte.`;
+        return res.status(403).json({ message });
     }
-      else {
+        else {
             // L'identifiant de l'utilisateur est valide, l'opération continue
             UserModel.update(req.body, {
             where: { id: id } 
@@ -42,5 +42,6 @@ module.exports = (app: any) => {
             });
         }
     });
-  };
+};
 
+export default editUserRoute;

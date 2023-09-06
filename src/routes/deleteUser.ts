@@ -2,7 +2,7 @@ import UserModel from "../models/User"
 import { ValidationError, UniqueConstraintError } from "sequelize"
 import authenticateToken from "../auth/auth"
   
-module.exports = (app: any) => {
+function deleteUserRoute(app: any){
   app.delete('/api/deleteUser/:id', authenticateToken, (req: any, res: any) => {
 
     const userIdFromToken = req.user.userId;
@@ -31,4 +31,6 @@ module.exports = (app: any) => {
         res.status(401).json({ message });
     }
   })
-}
+};
+
+export default deleteUserRoute;

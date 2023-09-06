@@ -1,10 +1,6 @@
-//import users from "../db/mock-users";
 import UserModel from "../models/User";
-//const {Op} = require('sequelize'); // import d'opérateur sequelize
-//import { Op } from "sequelize";
-//const auth = require('../auth/auth');
   
-module.exports = (app: any) => {
+function findAllUsersRoute(app: any){
   app.get('/api/findAllUsers', /*auth,*/ (req: any, res: any) => {
     UserModel.findAll({order: ['firstName']})
       .then((users: UserModel[]) => {
@@ -20,3 +16,5 @@ module.exports = (app: any) => {
 
   })
 }
+
+export default findAllUsersRoute;

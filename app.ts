@@ -1,15 +1,11 @@
-import express from 'express';
+
 import UserModel from './src/models/User';
 import { initDb, sequelize } from './src/db/sequelize';
-import morgan from 'morgan';
+import createServer from './src/utils/server';
 
-
-const app = express();
 const port = 3000;
 
-app
-  .use(morgan('dev')) //permet d'afficher l'endpoint actuel et le statut
-  .use(express.json());
+const app = createServer();
 
 async function main() {
   await initDb();
@@ -28,12 +24,6 @@ app.get('/', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
-require('./src/routes/findAllUsers')(app)
-require('./src/routes/createUser')(app)
-require('./src/routes/login')(app)
-require('./src/routes/editUser')(app)
-require('./src/routes/deleteUser')(app)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

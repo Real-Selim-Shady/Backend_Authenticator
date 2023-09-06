@@ -1,7 +1,7 @@
 import UserModel from "../models/User";
 import { ValidationError, UniqueConstraintError } from "sequelize";
 
-module.exports = (app: any) => {
+function createUserRoute(app: any){
     app.post('/api/createUser', (req: any,res: any) => {
 
             UserModel.create(req.body)
@@ -23,4 +23,6 @@ module.exports = (app: any) => {
         }
 
     )
-}
+};
+
+export default createUserRoute;
