@@ -2,9 +2,10 @@ import privateKey from '../auth/private_key';
 import * as jwt from 'jsonwebtoken';
 import UserModel from '../models/User';
 import bcrypt from 'bcrypt';
+import express, { Request, Response } from "express";
 
-function loginRoute(app: any){
-  app.post('/api/login', (req: any, res: any) => {
+function loginRoute(app: express.Application){
+  app.get('/api/login', (req: Request, res: Response) => {
     UserModel.findOne({ where: { userName: req.body.userName } })
       .then(user => {
         if (!user) {

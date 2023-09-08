@@ -1,35 +1,41 @@
 import UserModel from "../models/User"
-import { ValidationError, UniqueConstraintError } from "sequelize"
-import authenticateToken from "../auth/auth"
+//import { ValidationError, UniqueConstraintError } from "sequelize"
+import auth from "../auth/auth"
+import express, { Request, Response } from "express";
+//const auth = require('../auth/auth')
   
-function deleteUserRoute(app: any){
-  app.delete('/api/deleteUser/:id', authenticateToken, (req: any, res: any) => {
+function deleteUserRoute(app: express.Application){
+  app.delete('/api/deleteUser/:id', auth, (req: any, res: Response) => {
 
-    const userIdFromToken = req.user.userId;
+    const userIdFromToken = req.user?.userId;
     const idFromUserToDelete = parseInt(req.params.id);
-    if (!isNaN(userIdFromToken) && !isNaN(idFromUserToDelete) && userIdFromToken === idFromUserToDelete) {
-        UserModel.findByPk(idFromUserToDelete).then(user => {
-        if(user === null){
-            const message = `L'utilisateur demandé n'existe pas. Réessayez un autre identifiant`
-            res.status(404).json({message})
-        }
-        const userDeleted = user;
-        return UserModel.destroy({
-            where: { id: user?.id }
-        })
-        .then(_ => {
-            const message = `L'utilisateur ${userDeleted?.userName} a bien été supprimé.`
-            res.json({message, data: userDeleted })
-        })
-        })
-        .catch((error)=>{
-        const message = `l'utilisateur n'a pas pu être supprimé pour le moment, réessayez dans quelques instants`;
-        res.status(500).json({message, data: error});
-        })
-    } else {
-        const message = `L'identifiant de l'utilisateur est invalide.`;
-        res.status(401).json({ message });
+
+    const parsedIntTokenId = parseInt(userIdFromToken);
+
+    if (userIdFromToken !== idFromUserToDelete) {
+        const message = `L'utilisateur n'est pas autorisé à modifier ce compte.`;
+        return res.status(401).json({ message });
+      }
+
+    UserModel.findByPk(idFromUserToDelete).then(user => {
+    if(user === null){
+        const message = `L'utilisateur demandé n'existe pas. Réessayez un autre identifiant`
+        res.status(404).json({message})
+        return 
     }
+    const userDeleted = user;
+    return UserModel.destroy({
+        where: { id: user?.id }
+    })
+    .then(_ => {
+        const message = `L'utilisateur ${userDeleted?.userName} a bien été supprimé.`
+        res.json({message, data: userDeleted })
+    })
+    })
+    .catch((error)=>{
+    const message = `l'utilisateur n'a pas pu être supprimé pour le moment, réessayez dans quelques instants`;
+    res.status(500).json({message, data: error});
+    })
   })
 };
 

@@ -6,10 +6,11 @@
       "rootDir": "./src",
       "strict": true,
       "esModuleInterop": true,
-      "experimentalDecorators": true, // Ajoutez cette ligne
-      "emitDecoratorMetadata": true // Ajoutez cette ligne
+      "experimentalDecorators": true, 
+      "emitDecoratorMetadata": true 
     },
     "include": [
-      "src/**/*.ts"
+      "src/**/*.ts",
+      ".src/utils/typing_extension.d.ts"
     ]
   }
