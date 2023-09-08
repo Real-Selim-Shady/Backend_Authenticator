@@ -1,7 +1,13 @@
 import UserModel from "../models/User";
 import express, { Request, Response } from "express";
-  
+
+/**
+ * Defines the route for getting all users.
+ */
 function findAllUsersRoute(app: express.Application){
+  /**
+   * Express route for getting all users.
+   */
   app.get('/api/findAllUsers', (req: Request, res: Response) => {
     UserModel.findAll({order: ['firstName']})
       .then((users: UserModel[]) => {

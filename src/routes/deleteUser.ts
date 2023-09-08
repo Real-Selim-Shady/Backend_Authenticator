@@ -1,10 +1,14 @@
 import UserModel from "../models/User"
-//import { ValidationError, UniqueConstraintError } from "sequelize"
 import auth from "../auth/auth"
-import express, { Request, Response } from "express";
-//const auth = require('../auth/auth')
-  
+import express, { Response } from "express";
+
+/**
+ * Defines the route for deleting a user.
+ */
 function deleteUserRoute(app: express.Application){
+  /**
+   * Express route for deleting a user, using authentication token.
+   */
   app.delete('/api/deleteUser/:id', auth, (req: any, res: Response) => {
 
     const userIdFromToken = req.user?.userId;

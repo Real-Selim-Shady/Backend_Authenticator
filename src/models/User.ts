@@ -2,9 +2,16 @@ import { Model, Table, Column, PrimaryKey, AutoIncrement, BeforeCreate, BeforeUp
 import 'reflect-metadata';
 import bcrypt from 'bcrypt';
 
+/**
+ * User model representing a user in the database.
+ */
 @Table
 class UserModel extends Model {
     
+    /**
+     * Unique id for the user.
+     * @type {number}
+     */
     @PrimaryKey
     @AutoIncrement
     @Column
@@ -22,6 +29,10 @@ class UserModel extends Model {
     @Column
     password!: string;
 
+
+    /**
+     * Hashes the user's password before creating or updating the user record.
+     */
     @BeforeCreate
     @BeforeUpdate
     static async hashPassword(instance: UserModel) {

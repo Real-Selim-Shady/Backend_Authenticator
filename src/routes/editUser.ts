@@ -1,20 +1,22 @@
 import UserModel from "../models/User"
-import express, { Request, Response } from "express";
+import express, { Response } from "express";
 import { ValidationError, UniqueConstraintError } from "sequelize"
 import auth from "../auth/auth"
-//const auth = require('../auth/auth')
 
+/**
+ * Defines the route for editing a user.
+ */
 function editUserRoute(app: express.Application) {
+    /**
+     * Express route for editing a user, using authentication token.
+     */
     app.put('/api/editUser/:id', auth, (req: any, res: Response) => {
     const id = parseInt(req.params.id);
     const userIdFromToken = req.user?.userId;
     if (userIdFromToken !== id) {
         const message = `L'utilisateur n'est pas autorisé à modifier ce compte.`;
         return res.status(401).json({ message });
-      }
-    //const parsedIntTokenId = parseInt(userIdFromToken);
-
-    // L'identifiant de l'utilisateur est valide, l'opération continue
+        }
     UserModel.update(req.body, {
     where: { id: id } 
     })

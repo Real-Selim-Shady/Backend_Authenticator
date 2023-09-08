@@ -1,3 +1,6 @@
+/**
+ * Data meant to be pushed in the DB.
+ */
 const users = [
     {
         firstName: "Lala",

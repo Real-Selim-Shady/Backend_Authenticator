@@ -4,7 +4,13 @@ import UserModel from '../models/User';
 import bcrypt from 'bcrypt';
 import express, { Request, Response } from "express";
 
+/**
+ * Defines the login route for user authentication.
+ */
 function loginRoute(app: express.Application){
+  /**
+   * Express route for user authentication.
+   */
   app.get('/api/login', (req: Request, res: Response) => {
     UserModel.findOne({ where: { userName: req.body.userName } })
       .then(user => {
@@ -19,7 +25,9 @@ function loginRoute(app: express.Application){
             return res.status(401).json({ message });
           }
 
-          // Génération d'un jeton JWT valide pendant 24 heures.
+          /**
+           * Generate a valid JWT token valid for 24 hours.
+           */
           const token = jwt.sign(
             { userId: user.id },
             privateKey,

@@ -2,7 +2,14 @@ import express, { Request, Response } from "express";
 import UserModel from "../models/User";
 import { ValidationError, UniqueConstraintError } from "sequelize";
 
+
+/**
+ * Defines the route for creating a new user.
+ */
 function createUserRoute(app: express.Application){
+    /**
+     * Express route for creating a new user.
+     */
     app.post('/api/createUser', (req: Request,res: Response) => {
 
             UserModel.create(req.body)

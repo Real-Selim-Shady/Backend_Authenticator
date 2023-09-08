@@ -4,6 +4,9 @@ import UserModel from '../models/User';
 import users from './mock-users';
 import bcrypt from 'bcrypt';
 
+/**
+ * Sequelize instance used to connect to the database.
+ */
 const sequelize = new Sequelize({
   dialect: 'postgres',
   host: 'localhost',
@@ -12,11 +15,15 @@ const sequelize = new Sequelize({
   database: 'NewDb'
 });
 
+/**
+ * Initializes the database by synchronizing models and populating with mock user data.
+ */
 async function initDb() {
   await sequelize.sync({ force: true });
 
-
-  //Ici, je connecte UserModel et le mock-users, que j'envoie dans la DB 
+  /**
+   * Connects the UserModel and mock users, sending them to the database.
+   */
   for (const user of users) {
     await UserModel.create(user);
   }

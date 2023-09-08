@@ -2,13 +2,16 @@ import privateKey from '../auth/private_key';
 import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
-// Définission d'un type personnalisé pour l'objet Request
+/**
+ * CustomRequest interface extending Express Request to include user data.
+ */
 interface CustomRequest extends Request {
     user?: { userId: string }; 
   }
 
-
-//export default function authenticateToken
+/**
+ * Middleware for authenticating requests using JSON Web Tokens (JWT).
+ */
 function auth(req: CustomRequest, res: Response, next: NextFunction){
   const authorizationHeader = req.headers.authorization;
 
@@ -24,18 +27,8 @@ function auth(req: CustomRequest, res: Response, next: NextFunction){
       return res.status(401).json({ message, data: error });
     }
 
-    // Ajout de req.user avec l'ID de l'utilisateur provenant du token
-    //req.user = { userId: decodedToken.userId };
-    //const userId = decodedToken.userId
     req.user = { userId: decodedToken.userId };
     next();
-
-    /*if (req.body.userId && req.body.userId !== userId) {
-      const message = `L'identifiant de l'utilisateur est invalide.`;
-      return res.status(401).json({ message });
-    } else {
-      next();
-    }*/
   });
 }
 
