@@ -11,7 +11,7 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 
 2. `Install project and Launch the project`
 
-- Install backend project, available here: https://github.com/Real-Selim-Shady/Backend_Loger
+- Install backend project, available here: https://github.com/Real-Selim-Shady/Backend_Logger
 - Install dependencies with command 'npm install'
 - Install PostgresSql (I used version 15.3-4 during project realisation)
 - Create a server named NewLocalServer
@@ -22,13 +22,13 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 - In project folder, use command 'npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,userName:string,password:string'
 - Use command 'npx sequelize-cli db:migrate'
 - Launch project using command 'npm start'
-- in http://localhost:3000/, you will find existing users, provided in mock-user file available in folder db, this way : Backend_loger/src/db/mock-user.ts
+- in http://localhost:3000/, you will find existing users, provided in mock-user file available in folder db, this way : Backend_logger/src/db/mock-user.ts
 - Don't add any ID, it is already provided automatically with a primary key
 
 
 3. `Available Routes`
 
-- You can find the routes in Backend_loger/src/routes folder
+- You can find the routes in Backend_logger/src/routes folder
 
 - Here are the routes:
 
