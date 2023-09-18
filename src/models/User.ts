@@ -5,8 +5,8 @@ import bcrypt from 'bcrypt';
 /**
  * User model representing a user in the database.
  */
-@Table
-class UserModel extends Model {
+@Table({ tableName: 'Users' })
+class User extends Model {
     
     /**
      * Unique id for the user.
@@ -17,6 +17,10 @@ class UserModel extends Model {
     @Column
     id!: number;
   
+    // Ajouter une colonne rôle de type enum avec les valeurs Admin et User
+    @Column({ type: 'enum', values: ['Admin', 'User'], defaultValue: 'User' })
+    role!: string;
+    
     @Column
     firstName!: string;
   
@@ -34,8 +38,7 @@ class UserModel extends Model {
      * Hashes the user's password before creating or updating the user record.
      */
     @BeforeCreate
-    @BeforeUpdate
-    static async hashPassword(instance: UserModel) {
+    static async hashPassword(instance: User) {
         if (instance.changed('password')) {
             const hashedPassword = await bcrypt.hash(instance.password, 10);
             instance.password = hashedPassword;
@@ -43,4 +46,4 @@ class UserModel extends Model {
 
 }
 
-export default UserModel;
+export default User;

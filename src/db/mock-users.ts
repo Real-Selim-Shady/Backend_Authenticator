@@ -1,5 +1,5 @@
 /**
- * Data meant to be pushed in the DB.
+ * Data meant to be pushed in the test DB.
  */
 const users = [
     {

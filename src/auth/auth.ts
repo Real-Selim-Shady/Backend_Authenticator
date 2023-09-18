@@ -1,18 +1,19 @@
 import privateKey from '../auth/private_key';
 import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import { JwtPayload } from 'jsonwebtoken';
 
 /**
  * CustomRequest interface extending Express Request to include user data.
  */
 interface CustomRequest extends Request {
-    user?: { userId: string }; 
-  }
+    user?: { userId: string, userRole: string }; 
+}
 
 /**
  * Middleware for authenticating requests using JSON Web Tokens (JWT).
  */
-function auth(req: CustomRequest, res: Response, next: NextFunction){
+const auth = (req: CustomRequest, res: Response, next: NextFunction) => {
   const authorizationHeader = req.headers.authorization;
 
   if (!authorizationHeader) {
@@ -21,15 +22,18 @@ function auth(req: CustomRequest, res: Response, next: NextFunction){
   }
 
   const token = authorizationHeader.split(' ')[1];
-  const decodedToken = jwt.verify(token, privateKey, (error: any, decodedToken: any) => {
-    if (error) {
-      const message = `L'utilisateur n'est pas autorisé à accéder à cette ressource.`;
-      return res.status(401).json({ message, data: error });
-    }
 
-    req.user = { userId: decodedToken.userId };
+  try {
+    const decodedToken: JwtPayload = jwt.verify(token, privateKey) as JwtPayload; 
+    req.user = { 
+      userId: decodedToken.userId,
+      userRole: decodedToken.userRole
+    };
     next();
-  });
+  } catch (error) {
+    const message = `L'utilisateur n'est pas autorisé à accéder à cette ressource.`;
+    return res.status(401).json({ message, data: error });
+  }
 }
 
-export default auth;
+export { auth };

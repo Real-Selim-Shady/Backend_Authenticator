@@ -5,16 +5,18 @@ import editUserRoute from '../routes/editUser';
 import deleteUserRoute from '../routes/deleteUser';
 import loginRoute from '../routes/login';
 import findAllUsersRoute from '../routes/findAllUsers';
+import cors from 'cors';
 
 
 /**
  * Creates and configures an Express server.
  */
-function createServer (){
+const createServer = () => {
     const app = express();
 
     app
-    .use(morgan('dev')) 
+    .use(morgan('dev')) //middleware helping dev to know the exact endpoint that has been called
+    .use(cors())
     .use(express.json());
 
     /**

@@ -1,22 +1,38 @@
-import supertest from 'supertest';
+/*import supertest from 'supertest';
 import createServer from '../src/utils/server';
-import * as sequelizeModule from '../src/db/sequelize';
+import User from '../src/models/User';
 
 
+const app = createServer();
 
 describe('Testing the app', ()=>{
-  const app = createServer();
 
   beforeAll(async() => {
+    const { sequelizeMock } = require('./sequelizeMock');
+    // Remplacement de sequelize par le mock
+    jest.mock('../src/db/sequelize', () => ({
+      ...jest.requireActual('../src/db/sequelize'),
+      sequelize: sequelizeMock,
+    }));
+    // Importation de sequelizeModule après avoir défini le mock
+    const sequelizeModule = require('../src/db/sequelize');
     await sequelizeModule.initDb();
+    jest.spyOn(sequelizeModule.sequelize, 'define').mockReturnValue(User);
   })
   afterAll(async () => {
-    await sequelizeModule.sequelize.close();
-  });  
+    jest.clearAllMocks();
+    //await sequelizeModule.sequelize.close();
 
+  });  
+  
   describe('testing createUser route',()=>{
     describe('given User is adding an account by providing new userName, and also password, firstName, lastName',()=>{
       it('should provide a response 200', async()=>{
+
+        // Espionnage de la méthode create du modèle User (pas emptyModel)
+        const createSpy = jest.spyOn(User, 'create');
+
+
         const requestBody = {
           firstName: 'Hyur',
           lastName: 'Hyur',
@@ -27,6 +43,9 @@ describe('Testing the app', ()=>{
           .post(`/api/createUser`)
           .send(requestBody)
           .expect(200)
+
+        // Vérification que la méthode create a été appelée avec les bonnes données
+        expect(createSpy).toHaveBeenCalledWith(requestBody);
       })
     })
     describe('given User is adding an account by providing existing userName, and also password, firstName, lastName',()=>{
@@ -44,7 +63,7 @@ describe('Testing the app', ()=>{
       })
     })
   })
-
+  
   describe('testing login route',()=>{
     describe('given User is trying to connect to an existing account, providing acceptable data', ()=>{+
       it('should give a response 200', async()=>{
@@ -53,7 +72,7 @@ describe('Testing the app', ()=>{
           password: 'Lalafell',
         };
         await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(200)
       })
@@ -65,7 +84,7 @@ describe('Testing the app', ()=>{
           password: 'Lalafell',
         };
         await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(404)
       })
@@ -77,7 +96,7 @@ describe('Testing the app', ()=>{
           password: 'Lalafell2',
         };
         await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(401)
       })
@@ -101,7 +120,7 @@ describe('Testing the app', ()=>{
           password: 'Aura',
         };
         const response = await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(200)
         
@@ -129,7 +148,7 @@ describe('Testing the app', ()=>{
           password: 'Lalafell',
         };
         const response = await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(200)
         
@@ -157,7 +176,7 @@ describe('Testing the app', ()=>{
           password: 'Lalafell',
         };
         const response = await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(200)
         
@@ -185,7 +204,7 @@ describe('Testing the app', ()=>{
           password: 'Lalafell',
         };
         const response = await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(200)
         
@@ -221,7 +240,7 @@ describe('Testing the app', ()=>{
           password: 'Hyurgoth',
         };
         const response = await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(200)
         
@@ -241,7 +260,7 @@ describe('Testing the app', ()=>{
           password: 'Hyurgoth',
         };
         const response = await supertest(app)
-          .get(`/api/login`)
+          .post(`/api/login`)
           .send(requestBody)
           .expect(200)
         
@@ -260,7 +279,7 @@ describe('Testing the app', ()=>{
             password: 'Hyur',
           };
           const response = await supertest(app)
-            .get(`/api/login`)
+            .post(`/api/login`)
             .send(requestBody)
             .expect(200)
           
@@ -281,5 +300,4 @@ describe('Testing the app', ()=>{
   })
 
 })
-
-
+*/

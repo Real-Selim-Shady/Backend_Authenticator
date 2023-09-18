@@ -1,18 +1,18 @@
 import privateKey from '../auth/private_key';
 import * as jwt from 'jsonwebtoken';
-import UserModel from '../models/User';
+import User from '../models/User';
 import bcrypt from 'bcrypt';
 import express, { Request, Response } from "express";
 
 /**
  * Defines the login route for user authentication.
  */
-function loginRoute(app: express.Application){
+const loginRoute = (app: express.Application) => {
   /**
    * Express route for user authentication.
    */
-  app.get('/api/login', (req: Request, res: Response) => {
-    UserModel.findOne({ where: { userName: req.body.userName } })
+  app.post('/api/login', (req: Request, res: Response) => {
+    User.findOne({ where: { userName: req.body.userName } })
       .then(user => {
         if (!user) {
           const message = `L'utilisateur demandé n'existe pas.`;
@@ -29,7 +29,7 @@ function loginRoute(app: express.Application){
            * Generate a valid JWT token valid for 24 hours.
            */
           const token = jwt.sign(
-            { userId: user.id },
+            { userId: user.id, userRole: user.role },
             privateKey,
             { expiresIn: '24h' }
           );

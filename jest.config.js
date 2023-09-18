@@ -4,4 +4,7 @@ module.exports = {
     roots: ['<rootDir>/tests'],
     testRegex: '(/tests/.*\\.(test|spec))\\.ts$',
     moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+    verbose: true,
+    forceExit: true,
+    
   };

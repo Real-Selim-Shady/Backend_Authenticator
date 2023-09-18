@@ -8,23 +8,29 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 
 - Node.js - https://nodejs.org/en/download/
 - PostgresSQL - https://www.postgresql.org/download/
+- PgAdmin 4 (or another DataBase tool)
 
 2. `Install project and Launch the project`
 
 - Install backend project, available here: https://github.com/Real-Selim-Shady/Backend_Logger
 - Install dependencies with command 'npm install'
 - Install PostgresSql (I used version 15.3-4 during project realisation)
-- Create a server named NewLocalServer
-- Set hostname: 'localhost' in connection parameters
-- Set password: ' ' (one spacebar) in connection parameters
-- Create the DB and name it 'NewDB'
-- Make sure username and password in the config.json file is corresponding your actual username and password in the connection parameters of the DB
-- In project folder, use command 'npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,userName:string,password:string'
+- Open PgAdmin 4 (or another DataBase tool)
+- Create a server group named NewLocalServer by clicking right on "servers", then chose "create" and "server group"
+- Go in connection parameters, by clicking right on NewLocalServer, choosing "properties", then click on connection tab:
+    - In connection parameters, set hostname: 'localhost' 
+    - In connection parameters, set password: ' ' (one spacebar) 
+- Open the "NewLocalServer" group, you will see "Databases"
+- Click right on "Databases", then "create", and "database"
+- Name the Database "NewDb"
+- In project folder, generate an empty migration using the npx command : "npx sequelize-cli migration:generate --name create-users-table"
+- After a migration file has been generated in migrations folder, copy "fileForMigation" content and paste it in the migration file after erasing old content
 - Use command 'npx sequelize-cli db:migrate'
+- Make sure username and password in the config.json (inside config folder) file is corresponding your actual username and password in the connection parameters of the DB
 - Launch project using command 'npm start'
 - in http://localhost:3000/, you will find existing users, provided in mock-user file available in folder db, this way : Backend_logger/src/db/mock-user.ts
-- Don't add any ID, it is already provided automatically with a primary key
-
+- Don't add any ID while creating a user, it is already provided automatically with a primary key
+- Don't add any role while creating a user, it is already provided automatically with a primary key
 
 3. `Available Routes`
 

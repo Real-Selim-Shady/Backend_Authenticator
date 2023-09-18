@@ -1,5 +1,5 @@
 
-import UserModel from './src/models/User';
+import User from './src/models/User';
 import { initDb, sequelize } from './src/db/sequelize';
 import createServer from './src/utils/server';
 
@@ -19,7 +19,7 @@ const app = createServer();
  */
 async function main() {
   await initDb();
-  await sequelize.sync();
+  //await sequelize.sync();
 
 }
 
@@ -31,7 +31,7 @@ main();
  */
 app.get('/', async (req, res) => {
   try {
-    const users = await UserModel.findAll();
+    const users = await User.findAll();
     res.json(users);
   } catch (error) {
     console.error(error);
