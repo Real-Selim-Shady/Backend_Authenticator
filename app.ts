@@ -31,8 +31,9 @@ main();
  */
 app.get('/', async (req, res) => {
   try {
-    const users = await User.findAll();
-    res.json(users);
+    /*const users = await User.findAll();
+    res.json(users);*/
+    res.send("l'application est bien en marche!")
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
