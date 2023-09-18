@@ -8,7 +8,7 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 
 - Node.js - https://nodejs.org/en/download/
 - PostgresSQL - https://www.postgresql.org/download/
-- PgAdmin 4 (or another DataBase tool)
+- PgAdmin 4, which can be installed with PostGresSQL. You can also use another DataBase tool if you prefer to.
 
 ## 2. `Install project and Launch the project`
 

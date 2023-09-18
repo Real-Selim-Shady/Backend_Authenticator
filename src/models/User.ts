@@ -1,11 +1,12 @@
-import { Model, Table, Column, PrimaryKey, AutoIncrement, BeforeCreate } from 'sequelize-typescript';
-import 'reflect-metadata';
-import bcrypt from 'bcrypt';
+/* eslint-disable no-mixed-spaces-and-tabs */
+import { Model, Table, Column, PrimaryKey, AutoIncrement, BeforeCreate } from "sequelize-typescript";
+import "reflect-metadata";
+import bcrypt from "bcrypt";
 
 /**
  * User model representing a user in the database.
  */
-@Table({ tableName: 'Users' })
+@Table({ tableName: "Users" })
 class User extends Model {
     
     /**
@@ -15,23 +16,23 @@ class User extends Model {
     @PrimaryKey
     @AutoIncrement
     @Column
-    id!: number;
+    	id!: number;
   
     // Ajouter une colonne rôle de type enum avec les valeurs Admin et User
-    @Column({ type: 'enum', values: ['Admin', 'User'], defaultValue: 'User' })
-    role!: string;
+    @Column({ type: "enum", values: ["Admin", "User"], defaultValue: "User" })
+    	role!: string;
     
     @Column
-    firstName!: string;
+    	firstName!: string;
   
     @Column
-    lastName!: string;
+    	lastName!: string;
 
     @Column({ unique: true })
-    userName!: string;
+    	userName!: string;
 
     @Column
-    password!: string;
+    	password!: string;
 
 
     /**
@@ -39,10 +40,10 @@ class User extends Model {
      */
     @BeforeCreate
     static async hashPassword(instance: User) {
-        if (instance.changed('password')) {
-            const hashedPassword = await bcrypt.hash(instance.password, 10);
-            instance.password = hashedPassword;
-        }}
+    	if (instance.changed("password")) {
+    		const hashedPassword = await bcrypt.hash(instance.password, 10);
+    		instance.password = hashedPassword;
+    	}}
 
 }
 
