@@ -1,11 +1,11 @@
-import express, { Request, Response } from "express";
+import { Request, Response, Application } from "express";
 import User from "../models/User";
 import { ValidationError, UniqueConstraintError } from "sequelize";
 
 /**
  * Defines the route for creating a new user.
  */
-const createUserRoute = (app: express.Application) => {
+const createUserRoute = (app: Application) => {
   /**
    * Express route for creating a new user.
    */

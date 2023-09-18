@@ -1,5 +1,5 @@
 import User from "../models/User"
-import express, { Response } from "express";
+import { Response, Application } from "express";
 import { ValidationError, UniqueConstraintError } from "sequelize"
 import {auth} from "../auth/auth"
 import bcrypt from 'bcrypt';
@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt';
 /**
  * Defines the route for editing a user.
  */
-const editUserRoute = (app: express.Application) => {
+const editUserRoute = (app: Application) => {
     /**
      * Express route for editing a user, using authentication token.
      */

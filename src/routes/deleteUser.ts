@@ -1,11 +1,11 @@
 import User from "../models/User"
 import { auth } from "../auth/auth"
-import express, { Response } from "express";
+import { Response, Application } from "express";
 
 /**
  * Defines the route for deleting a user.
  */
-const deleteUserRoute = (app: express.Application) => {
+const deleteUserRoute = (app: Application) => {
   /**
    * Express route for deleting a user, using authentication token.
    */

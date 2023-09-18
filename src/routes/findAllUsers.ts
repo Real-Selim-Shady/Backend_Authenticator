@@ -1,11 +1,11 @@
 import User from "../models/User";
-import express, { Request, Response } from "express";
+import { Request, Response, Application } from "express";
 import { auth } from "../auth/auth";
 
 /**
  * Defines the route for getting all users.
  */
-const findAllUsersRoute = (app: express.Application) => {
+const findAllUsersRoute = (app: Application) => {
   /**
    * Express route for getting all users.
    */

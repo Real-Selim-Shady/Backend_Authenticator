@@ -2,12 +2,12 @@ import privateKey from '../auth/private_key';
 import * as jwt from 'jsonwebtoken';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
-import express, { Request, Response } from "express";
+import { Request, Response, Application } from "express";
 
 /**
  * Defines the login route for user authentication.
  */
-const loginRoute = (app: express.Application) => {
+const loginRoute = (app: Application) => {
   /**
    * Express route for user authentication.
    */

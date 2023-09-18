@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize-typescript';
-import { AutoIncrement } from 'sequelize-typescript';
 import User from '../models/User';
 
 

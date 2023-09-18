@@ -1,4 +1,4 @@
-import { Model, Table, Column, PrimaryKey, AutoIncrement, BeforeCreate, BeforeUpdate } from 'sequelize-typescript';
+import { Model, Table, Column, PrimaryKey, AutoIncrement, BeforeCreate } from 'sequelize-typescript';
 import 'reflect-metadata';
 import bcrypt from 'bcrypt';
 
