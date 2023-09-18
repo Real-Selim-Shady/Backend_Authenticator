@@ -42,6 +42,7 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
         - Description: Allows retrieving the up-to-date list of users, enabling developers to test routes and check their impact on the database.
         - Condition(s):
         - Connected to the running server and the database.
+        - Connected on Admin account, providing Admin token
 
     - registerUser: Post /api/registerUser
         - Description: Create a user.
