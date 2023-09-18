@@ -23,7 +23,7 @@ const registerUserRoute = (app: Application) => {
       role: userRole, 
     })
       .then(user => {
-        const message = `L'utilisateur ${req.body.userName} a bien été créé ${User.count()}.`
+        const message = `L'utilisateur ${req.body.userName} a bien été créé ${count}.`
         res.json({ message, data: user })
       })
       .catch(error => {

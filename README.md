@@ -27,18 +27,33 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 - After a migration file has been generated in migrations folder, copy "fileForMigation" content and paste it in the migration file after erasing old content
 - Use command 'npx sequelize-cli db:migrate'
 - Make sure username and password in the config.json (inside config folder) file is corresponding your actual username and password in the connection parameters of the DB
+
+## 3. `Launch the Project`
+
+- Make sure your database is activated
+- If it's not and you need help: 
+    - Click on the arrow at the left of your server group, named here NewLocalServer
+    - Wright password (here, a space bar)
+    - Click on the arrow at the left of your database, named here NewDb
+    - Now, it the database should be activated
 - Launch project using command 'npm start'
-- in http://localhost:3000/, you will find existing users, provided in mock-user file available in folder db, this way : Backend_logger/src/db/mock-user.ts
+- in http://localhost:3000/, you will see the message: "l'application est en marche"
+
+## 4. `Important to keep in mind`
+
+- The first registered User will automatically have the role "Admin", and all others will automatically have the role "User"
+- Only the Admin will be able to use the route findAllUsers
+- Admin account can not be deleted
 - Don't add any ID while creating a user, it is already provided automatically with a primary key
 - Don't add any role while creating a user, it is already provided automatically with a primary key
 
-## 3. `Available Routes`
+## 5. `Available Routes`
 
 - You can find the routes in Backend_logger/src/routes folder
 
 - Here are the routes:
 
-    - findAllUsers: Get /api/findAllUser
+    - findAllUsers: Get /api/findAllUsers
         - Description: Allows retrieving the up-to-date list of users, enabling developers to test routes and check their impact on the database.
         - Condition(s):
         - Connected to the running server and the database.
@@ -68,10 +83,11 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
         - Connected to the running server and the database.
         - Use an authentication token that corresponds to the user being deleted.
 
-## 4. `Launch test`
+## 6. `Launch test`
 
 Use command 'npm test'
+> feature will be provided again in next updates
 
-## 5. `Try routes with a tool`
+## 7. `Try routes with a tool`
 
 You can test all routes by setting them in a tool such as Insomnia, available for free: https://insomnia.rest/pricing

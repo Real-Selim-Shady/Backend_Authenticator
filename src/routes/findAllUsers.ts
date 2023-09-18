@@ -2,6 +2,13 @@ import User from "../models/User";
 import { Request, Response, Application } from "express";
 import { auth } from "../auth/auth";
 
+
+interface AuthenticatedRequest extends Request {
+  user?: {
+    userRole: string; 
+  };
+}
+
 /**
  * Defines the route for getting all users.
  */
@@ -9,7 +16,7 @@ const findAllUsersRoute = (app: Application) => {
   /**
    * Express route for getting all users.
    */
-  app.get('/api/findAllUsers', auth, async (req: any, res: Response) => {
+  app.get('/api/findAllUsers', auth, async (req: AuthenticatedRequest, res: Response) => {
     const userRoleFromToken = req.user?.userRole;
 
     if (userRoleFromToken === 'Admin') {
