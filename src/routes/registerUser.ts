@@ -5,11 +5,11 @@ import { ValidationError, UniqueConstraintError } from "sequelize";
 /**
  * Defines the route for creating a new user.
  */
-const createUserRoute = (app: Application) => {
+const registerUserRoute = (app: Application) => {
   /**
    * Express route for creating a new user.
    */
-  app.post('/api/createUser', async (req: Request, res: Response) => {
+  app.post('/api/registerUser', async (req: Request, res: Response) => {
     const count = await User.count();
     const userRole = count === 0 ? 'Admin' : 'User';
 
@@ -39,4 +39,4 @@ const createUserRoute = (app: Application) => {
   });
 };
 
-export default createUserRoute;
+export default registerUserRoute;

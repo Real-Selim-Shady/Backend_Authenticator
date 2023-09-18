@@ -43,7 +43,7 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
         - Condition(s):
         - Connected to the running server and the database.
 
-    - createUser: Post /api/createUser
+    - registerUser: Post /api/registerUser
         - Description: Create a user.
         - Condition(s):
         - Connected to the running server and the database.

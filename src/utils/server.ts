@@ -1,6 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
-import createUserRoute from '../routes/createUser';
+import registerUserRoute from '../routes/registerUser';
 import editUserRoute from '../routes/editUser';
 import deleteUserRoute from '../routes/deleteUser';
 import loginRoute from '../routes/login';
@@ -22,7 +22,7 @@ const createServer = () => {
     /**
      * Attach routes to the Express app.
      */
-    createUserRoute(app);
+    registerUserRoute(app);
     editUserRoute(app);
     deleteUserRoute(app);
     loginRoute(app);
