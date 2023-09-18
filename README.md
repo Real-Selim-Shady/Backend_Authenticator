@@ -1,16 +1,16 @@
-0. `Project description`
+## 0. `Project description`
 
 This project allows you to play with a database of Users, using logging in, editing, deleting, creating data functionalities. 
 It is based on Express, NodeJs, Typescript and PostgresSQL.
 
 
-1. `Prerequisites`
+## 1. `Prerequisites`
 
 - Node.js - https://nodejs.org/en/download/
 - PostgresSQL - https://www.postgresql.org/download/
 - PgAdmin 4 (or another DataBase tool)
 
-2. `Install project and Launch the project`
+## 2. `Install project and Launch the project`
 
 - Install backend project, available here: https://github.com/Real-Selim-Shady/Backend_Logger
 - Install dependencies with command 'npm install'
@@ -32,7 +32,7 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 - Don't add any ID while creating a user, it is already provided automatically with a primary key
 - Don't add any role while creating a user, it is already provided automatically with a primary key
 
-3. `Available Routes`
+## 3. `Available Routes`
 
 - You can find the routes in Backend_logger/src/routes folder
 
@@ -67,10 +67,10 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
         - Connected to the running server and the database.
         - Use an authentication token that corresponds to the user being deleted.
 
-4. `Launch test`
+## 4. `Launch test`
 
-- Use command 'npm test'
+Use command 'npm test'
 
-5. `Try routes with a tool`
+## 5. `Try routes with a tool`
 
-- You can test all routes by setting them in a tool such as Insomnia, available for free: https://insomnia.rest/pricing
+You can test all routes by setting them in a tool such as Insomnia, available for free: https://insomnia.rest/pricing
