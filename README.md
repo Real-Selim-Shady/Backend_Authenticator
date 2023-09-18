@@ -38,34 +38,34 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 
 - Here are the routes:
 
-findAllUsers: Get /api/findAllUser
-Description: Allows retrieving the up-to-date list of users, enabling developers to test routes and check their impact on the database.
-Condition(s):
-Connected to the running server and the database.
+>- findAllUsers: Get /api/findAllUser
+    - Description: Allows retrieving the up-to-date list of users, enabling developers to test routes and check their impact on the database.
+    - Condition(s):
+    - Connected to the running server and the database.
 
-createUser: Post /api/createUser
-Description: Create a user.
-Condition(s):
-Connected to the running server and the database.
-Choose a unique userName.
+>- createUser: Post /api/createUser
+    - Description: Create a user.
+    - Condition(s):
+    - Connected to the running server and the database.
+    - Choose a unique userName.
 
-login: Get /api/login
-Description: Allows logging in as a user.
-Condition(s):
-Connected to the running server and the database.
-Enter valid user information (matching userName and password).
+>- login: Get /api/login
+    - Description: Allows logging in as a user.
+    - Condition(s):
+    - Connected to the running server and the database.
+    - Enter valid user information (matching userName and password).
 
-editUser: Put /api/editUser/:id
-Description: Allows editing a user's information.
-Condition(s):
-Connected to the running server and the database.
-Use an authentication token that corresponds to the user being edited.
+>- editUser: Put /api/editUser/:id
+    - Description: Allows editing a user's information.
+    - Condition(s):
+    - Connected to the running server and the database.
+    - Use an authentication token that corresponds to the user being edited.
 
-deleteUser: Delete /api/deleteUser/:id
-Description: Allows deleting a user.
-Condition(s):
-Connected to the running server and the database.
-Use an authentication token that corresponds to the user being deleted.
+>- deleteUser: Delete /api/deleteUser/:id
+    - Description: Allows deleting a user.
+    - Condition(s):
+    - Connected to the running server and the database.
+    - Use an authentication token that corresponds to the user being deleted.
 
 4. `Launch test`
 
