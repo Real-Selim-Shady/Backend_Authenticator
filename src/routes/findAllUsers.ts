@@ -14,8 +14,8 @@ interface AuthenticatedRequest extends Request {
  */
 const findAllUsersRoute = (app: Application) => {
 	/**
-   * Express route for getting all users.
-   */
+	 * Express route for getting all users.
+	 */
 	app.get("/api/findAllUsers", auth, async (req: AuthenticatedRequest, res: Response) => {
 		const userRoleFromToken = req.user?.userRole;
 

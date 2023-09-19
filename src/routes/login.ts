@@ -26,8 +26,8 @@ const loginRoute = (app: Application) => {
 					}
 
 					/**
-           * Generates a valid JWT token valid for 24 hours.
-           */
+					 * Generates a valid JWT token valid for 24 hours.
+					 */
 					const token = jwt.sign(
 						{ userId: user.id, userRole: user.role },
 						privateKey,

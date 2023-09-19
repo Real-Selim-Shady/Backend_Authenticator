@@ -47,10 +47,8 @@ const editUserRoute = (app: Application) => {
 			user.userName = req.body.userName;
 
 			if (req.body.password) {
-				// Vérifiez si le mot de passe en clair correspond au hachage stocké
 				const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
 				if (!isPasswordValid) {
-					// Générez un nouveau hachage avec un nouveau sel
 					const hashedPassword = await bcrypt.hash(req.body.password, 10);
 					user.password = hashedPassword;
 				}
