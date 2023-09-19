@@ -15,8 +15,8 @@ interface AuthenticatedRequest extends Request {
  */
 const deleteUserRoute = (app: Application) => {
 	/**
-   * Express route for deleting a user, using authentication token.
-   */
+	 * Express route for deleting a user, using authentication token.
+	 */
 	app.delete("/api/deleteUser/:id", auth, async (req: AuthenticatedRequest, res: Response) => {
 
 		const userIdFromToken = req.user?.userId;
