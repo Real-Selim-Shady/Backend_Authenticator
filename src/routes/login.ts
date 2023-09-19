@@ -9,8 +9,8 @@ import { Request, Response, Application } from "express";
  */
 const loginRoute = (app: Application) => {
 	/**
-   * Express route for user authentication.
-   */
+	 * Express route for user authentication.
+	 */
 	app.post("/api/login", (req: Request, res: Response) => {
 		User.findOne({ where: { userName: req.body.userName } })
 			.then(user => {
