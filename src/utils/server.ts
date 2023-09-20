@@ -5,6 +5,7 @@ import editUserRoute from "../routes/editUser";
 import deleteUserRoute from "../routes/deleteUser";
 import loginRoute from "../routes/login";
 import findAllUsersRoute from "../routes/findAllUsers";
+import findUserRoute from "../routes/findUser";
 import cors from "cors";
 
 
@@ -27,6 +28,7 @@ const createServer = () => {
 	deleteUserRoute(app);
 	loginRoute(app);
 	findAllUsersRoute(app);
+	findUserRoute(app);
 
 	return app;
 };
