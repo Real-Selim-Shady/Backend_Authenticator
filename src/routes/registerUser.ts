@@ -3,11 +3,11 @@ import User from "../models/User";
 import { ValidationError, UniqueConstraintError } from "sequelize";
 
 /**
- * Defines the route for creating a new user.
+ * Defines the route for registering a new user.
  */
 const registerUserRoute = (app: Application) => {
 	/**
-	 * Express route for creating a new user.
+	 * Express route for registering a new user.
 	 */
 	app.post("/api/registerUser", async (req: Request, res: Response) => {
 		const count = await User.count();

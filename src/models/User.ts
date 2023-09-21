@@ -18,7 +18,6 @@ class User extends Model {
     @Column
     	id!: number;
   
-    // Ajouter une colonne rôle de type enum avec les valeurs Admin et User
     @Column({ type: "enum", values: ["Admin", "User"], defaultValue: "User" })
     	role!: string;
     
