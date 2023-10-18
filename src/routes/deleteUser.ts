@@ -6,6 +6,7 @@ import { Response, Application, Request } from "express";
 interface AuthenticatedRequest extends Request {
   user?: {
     userId: string; 
+	userRole: string;
   };
 }
 
@@ -21,13 +22,25 @@ const deleteUserRoute = (app: Application) => {
 
 		const userIdFromToken = req.user?.userId;
 		const idFromUserToDelete = parseInt(req.params.id);
+		const userRoleFromToken = req.user?.userRole;
+		const parsedIntTokenId = parseInt(userIdFromToken as string);
 
-		if (userIdFromToken === undefined) {
-			const message = "L'utilisateur n'est pas autorisé à modifier ce compte.";
-			return res.status(401).json({ message });
+		if(userRoleFromToken === "Admin" ){
+			const user = await User.findByPk(idFromUserToDelete);
+			if(user?.role !== "Admin"){
+				await User.destroy({
+					where: { id: user?.id }
+				});
+				const message = `L'utilisateur ${user?.userName} a bien été supprimé.`;
+				res.json({ message, data: user });
+				return;
+			}else{
+				const message = `Un administrateur ne peut pas être supprimé. ${user.role}`;
+				return res.status(403).json({ message });
+			}
 		}
 
-		const parsedIntTokenId = parseInt(userIdFromToken);
+
 
 		if (isNaN(parsedIntTokenId) || parsedIntTokenId !== idFromUserToDelete) {
 			const message = "L'utilisateur n'est pas autorisé à modifier ce compte.";
@@ -37,7 +50,7 @@ const deleteUserRoute = (app: Application) => {
 		try {
 			const user = await User.findByPk(parsedIntTokenId);
 
-			if (user === null) {
+			if (!user/* === null*/) {
 				const message = "L'utilisateur demandé n'existe pas. Réessayez un autre identifiant";
 				return res.status(404).json({ message });
 			}

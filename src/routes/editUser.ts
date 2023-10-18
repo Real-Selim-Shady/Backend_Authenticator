@@ -21,13 +21,7 @@ const editUserRoute = (app: Application) => {
 
 		const userIdFromToken = req.user?.userId;
 		const idFromUserToDelete = parseInt(req.params.id);
-    
-		if (userIdFromToken === undefined) {
-			const message = "L'utilisateur n'est pas autorisé à modifier ce compte.";
-			return res.status(401).json({ message });
-		}
-    
-		const parsedIntTokenId = parseInt(userIdFromToken);
+		const parsedIntTokenId = parseInt(userIdFromToken as string);
     
 		if (isNaN(parsedIntTokenId) || parsedIntTokenId !== idFromUserToDelete) {
 			const message = "L'utilisateur n'est pas autorisé à modifier ce compte.";
@@ -35,10 +29,11 @@ const editUserRoute = (app: Application) => {
 		}
     
 		try {
+			console.log("Inside try block.");
 			const user = await User.findByPk(parsedIntTokenId);
     
-			if (user === null) {
-				const message = "L'utilisateur demandé n'existe plus.";
+			if (!user/* === null*/) {
+				const message = "L'utilisateur demandé n'existe pas.";
 				return res.status(404).json({ message });
 			}
     
@@ -53,12 +48,14 @@ const editUserRoute = (app: Application) => {
 					user.password = hashedPassword;
 				}
 			}
+
     
 			await user.save();
     
 			const message = `L'utilisateur ${user.userName} a bien été modifié.`;
 			res.json({ message, data: user });
 		} catch(error) {
+			console.error("Error occurred:", error);
 			if (error instanceof ValidationError) {
 				return res.status(400).json({ message: error.message, data: error });
 			}

@@ -18,7 +18,6 @@ const findAllUsersRoute = (app: Application) => {
 	 */
 	app.get("/api/findAllUsers", auth, async (req: AuthenticatedRequest, res: Response) => {
 		const userRoleFromToken = req.user?.userRole;
-
 		if (userRoleFromToken === "Admin") {
 			User.findAll({ order: ["firstName"] })
 				.then((users: User[]) => {

@@ -20,12 +20,7 @@ const findUserRoute = (app: Application) => {
 		const userIdFromToken = req.user?.userId;
 		const idFromUserToDelete = parseInt(req.params.id);
     
-		if (userIdFromToken === undefined || userIdFromToken === undefined) {
-			const message = "L'utilisateur n'est pas autorisé à cette ressource.";
-			return res.status(401).json({ message });
-		}
-    
-		const parsedIntTokenId = parseInt(userIdFromToken);
+		const parsedIntTokenId = parseInt(userIdFromToken as string);
     
 		if (isNaN(parsedIntTokenId) || parsedIntTokenId !== idFromUserToDelete) {
 			const message = "L'utilisateur n'est pas autorisé à cette ressource.";
