@@ -1,0 +1,26 @@
+services:
+  postgres:
+    container_name: postgres-authenticator
+    image: postgres
+    environment:
+      POSTGRES_DB: "NewDb"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: " "
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin-postgres-authenticator
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: selim14@msn.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - default
+    restart: unless-stopped
+

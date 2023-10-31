@@ -7,13 +7,17 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 ## 1. `Prerequisites`
 
 - Node.js - https://nodejs.org/en/download/
+*1st possibility*
 - PostgresSQL - https://www.postgresql.org/download/
 - PgAdmin 4, which can be installed with PostGresSQL. You can also use another DataBase tool if you prefer to.
+*2nd possibility*
+- Docker
 
 ## 2. `Install project and Launch the project`
 
 - Install backend project, available here: https://github.com/Real-Selim-Shady/Backend_Logger
 - Install dependencies with command 'npm install'
+*1st possibility*
 - Install PostgresSql (I used version 15.3-4 during project realisation)
 - Open PgAdmin 4 (or another DataBase tool)
 - Create a server group named NewLocalServer by clicking right on "servers", then chose "create" and "server group"
@@ -23,6 +27,19 @@ It is based on Express, NodeJs, Typescript and PostgresSQL.
 - Open the "NewLocalServer" group, you will see "Databases"
 - Click right on "Databases", then "create", and "database"
 - Name the Database "NewDb"
+*2nd possibility*
+- Use command docker compose up -d, or docker-compose up -d
+- Use command docker ps (you will be able to close the docker image by using docker compose stop, then, docker compose rm)
+- Take the port of pgadmin (if it's 5050:80, then you open pgadmin on localhost/5050)
+- Connect to the docker image using the PGADMIN_DEFAULT_EMAIL and PGADMIN_DEFAULT_PASSWORD (here, it's any@mail.com and admin)
+- Then you have access to a pgadmin platform
+- Click right on Servers, create a new server named: Authenticator
+- Go in connection parameters, by clicking right on Authenticator, choosing "properties", then click on connection tab:
+    - In connection parameters, set hostname: 'localhost' 
+    - In connection parameters, set password: ' ' (one spacebar) 
+- Open the "Authenticator" group, you will see "Databases"
+- Left click to open the databases, you will see the NewDb database already added
+*Back to common path*
 - In project folder, generate an empty migration using the npx command : "npx sequelize-cli migration:generate --name create-users-table"
 - After a migration file has been generated in migrations folder, copy "fileForMigation" content and paste it in the migration file after erasing old content
 - Use command 'npx sequelize-cli db:migrate'
